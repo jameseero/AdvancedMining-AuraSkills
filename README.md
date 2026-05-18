@@ -1,4 +1,4 @@
-# AdvancedMining  
+# AdvancedMining - AuraSkills
 AdvancedMining is a plugin that adds a custom mining system. It functions like the one seen on Hypixel Skyblock.<br><br>
 If you find any issues or have a suggestion, please create an Issue on the GitHub.
 ## How it works
