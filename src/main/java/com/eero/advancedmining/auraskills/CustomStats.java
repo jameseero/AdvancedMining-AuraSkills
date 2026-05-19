@@ -9,7 +9,7 @@ public class CustomStats {
     public static final CustomStat MINING_POWER = CustomStat
             .builder(NamespacedId.of("advancedmining", "mining_power"))
             .displayName("Mining Power")
-            .description("Tier level - allows breaking tougher blocks")
+            .description("Allows breaking tougher blocks")
             .color("<gold>")  // Use MiniMessage format
             .symbol("⛏")
             .trait(CustomTraits.MINING_POWER, 1.0)

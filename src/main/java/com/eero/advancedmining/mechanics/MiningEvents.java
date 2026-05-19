@@ -5,6 +5,7 @@ import dev.aurelium.auraskills.api.user.SkillsUser;
 import io.papermc.paper.persistence.PersistentDataContainerView;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.GameMode;
+import org.bukkit.Tag;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.block.Block;
@@ -97,8 +98,17 @@ public class MiningEvents implements Listener {
 
         miningSpeed = computedSpeed > 0f ? computedSpeed : defaultSpeed;
         breakingPower = computedPower > 0 ? computedPower : defaultPower;
-        
-        String toolType = item.isEmpty() ? "hand" : pdc.getOrDefault(AdvancedMining.TOOL_TYPE_KEY, PersistentDataType.STRING, defaultTool == null ? "" : defaultTool.toolType());
+
+        String pdcToolType = item.isEmpty() ? null : pdc.get(AdvancedMining.TOOL_TYPE_KEY, PersistentDataType.STRING);
+        String toolType;
+
+        if (pdcToolType != null && !pdcToolType.isEmpty()) {
+            toolType = pdcToolType;
+        } else if (defaultTool != null && !defaultTool.toolType().isEmpty()) {
+            toolType = defaultTool.toolType();
+        } else {
+            toolType = resolveToolType(item); // Tag-based fallback, "hand" if nothing matches
+        }
 
         // Efficiency enchantment
         if (AdvancedMining.Config.efficiencyEnable) {
@@ -137,8 +147,17 @@ public class MiningEvents implements Listener {
         breakingPower = breakStartEvent.getBreakingPower();
         toolType = breakStartEvent.getToolType();
 
-        //checks for tool and hardness
-        if (!customBlock.bestTool().isEmpty() && !toolType.equals(customBlock.bestTool())) return;
+        if (!customBlock.bestTool().isEmpty()) {
+            boolean ok = switch (customBlock.bestTool()) {
+                case "pickaxe" -> Tag.ITEMS_PICKAXES.isTagged(item.getType());
+                case "shovel"  -> Tag.ITEMS_SHOVELS.isTagged(item.getType());
+                case "axe"     -> Tag.ITEMS_AXES.isTagged(item.getType());
+                case "hoe"     -> Tag.ITEMS_HOES.isTagged(item.getType());
+                case "sword"   -> Tag.ITEMS_SWORDS.isTagged(item.getType());
+                default -> false;
+            };
+            if (!ok) return; // abort if wrong tool type
+        }
 
         if (customBlock.hardness() > breakingPower) {
             if (!item.isEmpty()) player.sendRichMessage("<red>You need at least Breaking Power " + customBlock.hardness() + " to mine this!");
@@ -279,5 +298,16 @@ public class MiningEvents implements Listener {
         miningRunnables.remove(player);
 
     }
+
+    public static String resolveToolType(ItemStack item) {
+        if (item == null || item.getType().isAir()) return "hand";
+        if (Tag.ITEMS_PICKAXES.isTagged(item.getType())) return "pickaxe";
+        if (Tag.ITEMS_SHOVELS.isTagged(item.getType())) return "shovel";
+        if (Tag.ITEMS_AXES.isTagged(item.getType()))    return "axe";
+        if (Tag.ITEMS_HOES.isTagged(item.getType()))    return "hoe";
+        if (Tag.ITEMS_SWORDS.isTagged(item.getType()))  return "sword";
+        return ""; // unknown/other
+    }
+
 
 }
