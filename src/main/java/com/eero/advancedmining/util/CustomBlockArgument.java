@@ -1,4 +1,4 @@
-package win.codingboulder.advancedmining.util;
+package com.eero.advancedmining.util;
 
 import com.mojang.brigadier.LiteralMessage;
 import com.mojang.brigadier.arguments.ArgumentType;
@@ -10,7 +10,7 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import io.papermc.paper.command.brigadier.argument.CustomArgumentType;
 import org.jetbrains.annotations.NotNull;
-import win.codingboulder.advancedmining.CustomBlock;
+import com.eero.advancedmining.CustomBlock;
 
 import java.util.concurrent.CompletableFuture;
 

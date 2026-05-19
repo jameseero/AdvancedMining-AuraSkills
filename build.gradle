@@ -15,10 +15,15 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+    maven {
+        name = "aurelium-repo"
+        url = "https://repo.aurelium.dev/releases"
+    }
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+    compileOnly("dev.aurelium:auraskills-api:2.2.4")
 }
 
 def targetJavaVersion = 21

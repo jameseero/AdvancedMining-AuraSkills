@@ -1,0 +1,18 @@
+stats:
+  advancedmining/mining_speed:
+    enabled: true
+    traits:
+      advancedmining/mining_speed:
+        modifier: 1.0
+  advancedmining/mining_power:
+    enabled: true
+    traits:
+      advancedmining/mining_power:
+        modifier: 1.0
+traits:
+  advancedmining/mining_speed:
+    enabled: true
+  advancedmining/mining_power:
+    enabled: true
+
+file_version: 1me

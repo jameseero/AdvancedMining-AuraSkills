@@ -1,10 +1,10 @@
-package win.codingboulder.advancedmining.mechanics;
+package com.eero.advancedmining.mechanics;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.bukkit.Material;
-import win.codingboulder.advancedmining.AdvancedMining;
+import com.eero.advancedmining.AdvancedMining;
 
 import java.io.File;
 import java.io.FileReader;

@@ -1,4 +1,4 @@
-package win.codingboulder.advancedmining.mechanics;
+package com.eero.advancedmining.mechanics;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
-import win.codingboulder.advancedmining.AdvancedMining;
+import com.eero.advancedmining.AdvancedMining;
 
 import java.io.*;
 import java.util.*;

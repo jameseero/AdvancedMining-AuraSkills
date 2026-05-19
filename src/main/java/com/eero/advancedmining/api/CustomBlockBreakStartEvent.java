@@ -1,4 +1,4 @@
-package win.codingboulder.advancedmining.api;
+package com.eero.advancedmining.api;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
-import win.codingboulder.advancedmining.CustomBlock;
+import com.eero.advancedmining.CustomBlock;
 
 public class CustomBlockBreakStartEvent extends Event implements Cancellable {
 

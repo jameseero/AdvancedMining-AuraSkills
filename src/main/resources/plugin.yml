@@ -1,6 +1,6 @@
 name: AdvancedMining
 version: '1.2'
-main: win.codingboulder.advancedmining.AdvancedMining
+main: com.eero.advancedmining.AdvancedMining
 api-version: '1.21'
 authors: [ CodingBoulder ]
 description: A plugin that adds a custom mining system

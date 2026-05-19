@@ -1,4 +1,4 @@
-package win.codingboulder.advancedmining.mechanics;
+package com.eero.advancedmining.mechanics;
 
 import io.papermc.paper.persistence.PersistentDataContainerView;
 import net.kyori.adventure.sound.Sound;
@@ -22,10 +22,10 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
-import win.codingboulder.advancedmining.AdvancedMining;
-import win.codingboulder.advancedmining.BlockDataStorage;
-import win.codingboulder.advancedmining.CustomBlock;
-import win.codingboulder.advancedmining.api.CustomBlockBreakStartEvent;
+import com.eero.advancedmining.AdvancedMining;
+import com.eero.advancedmining.BlockDataStorage;
+import com.eero.advancedmining.CustomBlock;
+import com.eero.advancedmining.api.CustomBlockBreakStartEvent;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;

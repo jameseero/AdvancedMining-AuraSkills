@@ -1,4 +1,4 @@
-package win.codingboulder.advancedmining.mechanics;
+package com.eero.advancedmining.mechanics;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -7,9 +7,9 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jspecify.annotations.NonNull;
-import win.codingboulder.advancedmining.AdvancedMining;
-import win.codingboulder.advancedmining.BlockDataStorage;
-import win.codingboulder.advancedmining.CustomBlock;
+import com.eero.advancedmining.AdvancedMining;
+import com.eero.advancedmining.BlockDataStorage;
+import com.eero.advancedmining.CustomBlock;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

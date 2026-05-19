@@ -1,4 +1,4 @@
-package win.codingboulder.advancedmining;
+package com.eero.advancedmining;
 
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.FloatArgumentType;
@@ -25,11 +25,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
-import win.codingboulder.advancedmining.mechanics.BlockDrops;
-import win.codingboulder.advancedmining.mechanics.DefaultBlocks;
-import win.codingboulder.advancedmining.mechanics.DefaultTools;
-import win.codingboulder.advancedmining.util.BlockDropsArgument;
-import win.codingboulder.advancedmining.util.CustomBlockArgument;
+import com.eero.advancedmining.mechanics.BlockDrops;
+import com.eero.advancedmining.mechanics.DefaultBlocks;
+import com.eero.advancedmining.mechanics.DefaultTools;
+import com.eero.advancedmining.util.BlockDropsArgument;
+import com.eero.advancedmining.util.CustomBlockArgument;
 
 import java.util.List;
 

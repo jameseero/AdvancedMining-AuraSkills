@@ -1,4 +1,4 @@
-package win.codingboulder.advancedmining;
+package com.eero.advancedmining;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.AxisAngle4f;
 import org.joml.Vector3f;
-import win.codingboulder.advancedmining.mechanics.BlockDrops;
+import com.eero.advancedmining.mechanics.BlockDrops;
 
 import java.io.*;
 import java.util.HashMap;

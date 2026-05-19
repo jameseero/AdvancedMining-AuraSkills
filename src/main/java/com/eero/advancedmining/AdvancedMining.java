@@ -1,12 +1,17 @@
-package win.codingboulder.advancedmining;
+package com.eero.advancedmining;
 
+import com.eero.advancedmining.auraskills.CustomStats;
+import com.eero.advancedmining.auraskills.CustomTraits;
+import com.eero.advancedmining.mechanics.*;
+import dev.aurelium.auraskills.api.AuraSkillsApi;
+import dev.aurelium.auraskills.api.registry.NamespacedRegistry;
 import net.kyori.adventure.bossbar.BossBar;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.plugin.java.JavaPlugin;
-import win.codingboulder.advancedmining.mechanics.*;
+import com.eero.advancedmining.mechanics.*;
 
 import java.io.File;
 
@@ -38,9 +43,18 @@ public final class AdvancedMining extends JavaPlugin {
 
         new AdvancedMiningCommand(this);
 
+        AuraSkillsApi auraSkills = AuraSkillsApi.get();
+        NamespacedRegistry registry = auraSkills.useRegistry("AdvancedMining", getDataFolder());
+
+        registry.registerTrait(CustomTraits.MINING_SPEED);
+        registry.registerTrait(CustomTraits.MINING_POWER);
+        registry.registerStat(CustomStats.MINING_SPEED);
+        registry.registerStat(CustomStats.MINING_POWER);
+
         BlockRegenSystem.loadSystem(this);
 
         getLogger().info("AdvancedMining enabled!");
+
 
     }
 

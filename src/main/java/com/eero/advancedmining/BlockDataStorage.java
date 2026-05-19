@@ -1,4 +1,4 @@
-package win.codingboulder.advancedmining;
+package com.eero.advancedmining;
 
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
