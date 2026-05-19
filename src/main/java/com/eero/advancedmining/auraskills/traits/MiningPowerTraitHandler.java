@@ -1,16 +1,25 @@
 package com.eero.advancedmining.auraskills.traits;
 
+import com.eero.advancedmining.auraskills.CustomTraits;
+import dev.aurelium.auraskills.api.AuraSkillsApi;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Locale;
 
 // Minimal placeholder handler to avoid direct AuraSkills API dependency for handlers
-public class MiningPowerTraitHandler {
+public class MiningPowerTraitHandler implements dev.aurelium.auraskills.api.trait.TraitHandler {
     private final JavaPlugin plugin;
+    private final AuraSkillsApi aura;
 
-    public MiningPowerTraitHandler(JavaPlugin plugin) {
+    public MiningPowerTraitHandler(AuraSkillsApi aura, JavaPlugin plugin) {
+        this.aura = aura;
         this.plugin = plugin;
+    }
+
+    @Override
+    public dev.aurelium.auraskills.api.trait.Trait[] getTraits() {
+        return new dev.aurelium.auraskills.api.trait.Trait[]{CustomTraits.MINING_POWER};
     }
 
     public double getBaseLevel(Player player) {

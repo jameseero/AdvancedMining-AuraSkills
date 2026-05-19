@@ -1,5 +1,7 @@
 package com.eero.advancedmining.mechanics;
 
+import dev.aurelium.auraskills.api.AuraSkillsApi;
+import dev.aurelium.auraskills.api.user.SkillsUser;
 import io.papermc.paper.persistence.PersistentDataContainerView;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.GameMode;
@@ -26,6 +28,7 @@ import com.eero.advancedmining.AdvancedMining;
 import com.eero.advancedmining.BlockDataStorage;
 import com.eero.advancedmining.CustomBlock;
 import com.eero.advancedmining.api.CustomBlockBreakStartEvent;
+import com.eero.advancedmining.auraskills.StatHandler;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -60,12 +63,41 @@ public class MiningEvents implements Listener {
         attrib.setBaseValue(0d);
         attrib.getModifiers().forEach(attrib::removeModifier);
 
-        // Get player stats. If a stat is not defined check default tools
         ItemStack item = player.getInventory().getItemInMainHand();
         PersistentDataContainerView pdc = item.getPersistentDataContainer();
         DefaultTools.Tool defaultTool = DefaultTools.getDefaultMapping(item.getType()); // Get the default tool
-        float miningSpeed = pdc.getOrDefault(AdvancedMining.MINING_SPEED_KEY, PersistentDataType.FLOAT, defaultTool == null ? 0f : defaultTool.miningSpeed());
-        int breakingPower = pdc.getOrDefault(AdvancedMining.BREAKING_POWER_KEY, PersistentDataType.INTEGER, defaultTool == null ? 0 : defaultTool.breakingPower());
+
+        // Get player stats. If AuraSkills doesn’t provide values (> 0), fall back to PDC or default tool
+        float miningSpeed;
+        int breakingPower;
+
+        // Compute defaults first (PDC > default tool > zero)
+        float defaultSpeed = pdc.getOrDefault(
+                AdvancedMining.MINING_SPEED_KEY,
+                PersistentDataType.FLOAT,
+                defaultTool == null ? 0f : defaultTool.miningSpeed()
+        );
+        int defaultPower = pdc.getOrDefault(
+                AdvancedMining.BREAKING_POWER_KEY,
+                PersistentDataType.INTEGER,
+                defaultTool == null ? 0 : defaultTool.breakingPower()
+        );
+
+        float computedSpeed = 0f;
+        int computedPower = 0;
+
+        AuraSkillsApi aura = AuraSkillsApi.get();
+        if (aura != null) {
+            SkillsUser user = aura.getUser(player.getUniqueId());
+            if (user != null) {
+                computedSpeed = (float) StatHandler.calculateMiningSpeed(player, user);
+                computedPower = StatHandler.calculateMiningPower(player, user);
+            }
+        }
+
+        miningSpeed = computedSpeed > 0f ? computedSpeed : defaultSpeed;
+        breakingPower = computedPower > 0 ? computedPower : defaultPower;
+        
         String toolType = item.isEmpty() ? "hand" : pdc.getOrDefault(AdvancedMining.TOOL_TYPE_KEY, PersistentDataType.STRING, defaultTool == null ? "" : defaultTool.toolType());
 
         // Efficiency enchantment
